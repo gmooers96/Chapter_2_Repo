@@ -1,0 +1,93 @@
+{
+    "id": 4301,
+    "optimizer": {
+        "lr": 1e-4
+    }, 
+    "kl_weight": 0.0025,
+    "annealing": true,
+    "data": {
+        "training_data_path": "/DFS-L/DATA/pritchard/gmooers/Finished_DYAMOND/DYAMOND/IFS/Raw_Small_Scaled_IFS_W_Training.npy",
+        "test_data_path": "/fast/gmooers/Preprocessed_Data/DYAMOND/Small_IFS/Raw_Small_Scaled_IFS_W_Test.npy",
+        "train_labels": "/fast/gmooers/Preprocessed_Data/Centered_50_50/Y_Train.npy",
+        "test_labels": "/fast/gmooers/Preprocessed_Data/Centered_50_50/Improved_Y_Test.npy",
+        "max_scalar": "/DFS-L/DATA/pritchard/gmooers/Finished_DYAMOND/DYAMOND/IFS/Raw_Small_IFS_Max_Scalar.npy",
+        "min_scalar": "/DFS-L/DATA/pritchard/gmooers/Finished_DYAMOND/DYAMOND/IFS/Raw_Small_IFS_Min_Scalar.npy"
+    },
+    "encoder": {
+        "activation": "relu",
+        "latent_dim": 1024,
+        "conv_0": {
+            "filter_num": 64,
+            "kernel_size": [3, 3],
+            "stride": 2
+        },
+        "conv_1": {
+            "filter_num": 64,
+            "kernel_size": [3, 3],
+            "stride": 2
+        },
+        "conv_2": {
+            "filter_num": 128,
+            "kernel_size": [3, 3],
+            "stride": 2
+        },
+        "conv_22": {
+            "filter_num": 256,
+            "kernel_size": [3, 3],
+            "stride": 2
+        },
+        "conv_3": {
+            "filter_num": 512,
+            "kernel_size": [3, 3],
+            "stride": 2
+        },
+        "conv_mu": {
+            "filter_num": 128,
+            "kernel_size": [3, 3],
+            "stride": 2
+        }, 
+        "conv_log_var": {
+            "filter_num": 128,
+            "kernel_size": [3, 3],
+            "stride": 2
+        }
+    },
+    "decoder": {
+        "latent_dim": 1024,
+        "activation": "relu",
+        "latent_reshape":{
+            "dim_1":8,
+            "dim_2":8,
+            "dim_3":12
+        },
+        "conv_t_0": {
+            "filter_num": 512,
+            "kernel_size": [3, 3],
+            "stride": 2
+        },
+        "conv_t_1": {
+            "filter_num": 256,
+            "kernel_size": [3, 3],
+            "stride": 2
+        },
+        "conv_t_2": {
+            "filter_num": 64,
+            "kernel_size": [3, 3],
+            "stride": 2
+        },
+        "conv_mu": {
+            "filter_num": 1,
+            "kernel_size": [3, 3],
+            "stride": 2,
+            "activation": "sigmoid"
+        },
+        "conv_log_var": {
+            "filter_num": 1,
+            "kernel_size": [3, 3],
+            "stride": 2,
+            "activation": "linear"
+        }
+    },
+    "batch_size": 128,
+    "train_epochs": 1600
+}
